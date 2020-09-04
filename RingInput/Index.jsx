@@ -5,7 +5,7 @@ import RingProgress from '../RingProgress'
 import styles from './index.less'
 // For number selecting
 export default function RingInput(props) {
-  const { width, radius, backgroundColor, barColor, defaultValue, range, onChange, stepLength } = props;
+  const { width, radius, backgroundColor, barColor, defaultValue, range, onChange, stepLength, style, className } = props;
   const [value, setValue] = useState(defaultValue)
   const onPlus = () => {
     if (value < range[0] || value >= range[1]) return
@@ -18,7 +18,7 @@ export default function RingInput(props) {
     onChange(value - stepLength);
   }
   return (
-    <div style={{ display: "inline-block" }}>
+    <div style={style} className={className}>
       <RingProgress width={width} radius={radius} progress={value / (range[1] - range[0])} backgroundColor={backgroundColor} barColor={barColor}></RingProgress>
       <div className={styles.inside} style={{
         width: width,
