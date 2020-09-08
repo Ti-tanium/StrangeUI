@@ -1,5 +1,4 @@
 import React from 'react'
-import { Col, Row } from 'antd'
 import styles from './ReverseTable.less'
 
 export default function ReverseTable(props) {
@@ -14,13 +13,13 @@ export default function ReverseTable(props) {
     columnDirection = tmp;
   }
   return (
-    <div style={{ display: 'flex', flexDirection: 'row', padding: 16, overflowX: 'scroll' }}>
+    <div style={{ display: 'flex', flexDirection: 'row', padding: 16, overflowX: 'auto' }}>
       <table style={{ ...rowDirection }}>
         <thead>
           <tr style={{ ...columnDirection, ...rowStyle, minWidth: 80, fontWeight: 'bold' }}>
             {
               columns.map(column => {
-                return <td style={{ ...column.style, ...cellStyle }}>{column.title}</td>
+                return <td key={column.dataIndex} style={{ ...column.style, ...cellStyle }}>{column.title}</td>
               })
             }
           </tr>
@@ -29,9 +28,9 @@ export default function ReverseTable(props) {
           {
             dataSource.map(row => {
               return (
-                <tr gutter={[0, 8]} style={{ ...columnDirection, ...rowStyle }} className={styles.reverseRow} key={row.id}>
+                <tr key={row.id} gutter={[0, 8]} style={{ ...columnDirection, ...rowStyle }} className={styles.reverseRow} key={row.id}>
                   {columns.map(item => {
-                    return item.render ? item.render(row) : <td style={{ ...cellStyle, textAlign: 'right' }}>{row[item.dataIndex]}</td>
+                    return <td key={item.dataIndex} style={{ ...cellStyle, textAlign: 'right' }}>{item.render ? item.render(row) : row[item.dataIndex]}</td>
                   })}
                 </tr>
               )
