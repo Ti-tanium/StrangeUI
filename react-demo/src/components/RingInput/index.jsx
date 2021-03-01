@@ -37,7 +37,6 @@ export default function RingInput(props) {
     </div >
   )
 }
-
 RingInput.defaultProps = {
   width: 100,
   radius: 5,
